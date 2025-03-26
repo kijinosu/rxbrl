@@ -1,0 +1,76 @@
+# rxbrl-dev-02.R
+# created 2025-03-19
+# Scripts for developing rxbrl
+#
+# Start experimenting with package towards
+# incorporating functions from original XBRL
+# package.
+library(Rcpp)
+
+# try to link to libxml2
+# Try adding xml2 to LinkedTo field in DESCRIPTION
+# No obvious effect
+# Add rxbrl.h file to src
+# Compiled and installed, but it also contains no calls
+# to libxml2.
+# try compileAttributes
+?compileAttributes
+compileAttributes()
+# no complaints.
+# Add SystemRequirements field to DESCRIPTION
+# OK
+# start copying from XBRL.R 
+# On RStudio INSTALL
+# undefined reference to `__imp_xmlFreeDoc'
+# Rcmd.exe INSTALL --preclean --no-multiarch --with-keep.source rxbrl
+# per https://github.com/RcppCore/RcppParallel/issues/34
+# try
+# Rcmd.exe INSTALL --preclean --with-keep.source rxbrl
+
+pkg <- "package:rxbrl"
+detach(name = pkg, unload = TRUE, character.only = TRUE)
+devtools::uninstall("rxbrl")
+utils::remove.packages("rxbrl")
+
+#### maketools
+install.packages("maketools")
+library(maketools)
+cxx_info()
+r_cmd_config("CXXFLAGS")
+pkgs <- pc_pkg_list()
+pc_pkg_exists(pkg = "libxml-2.0")
+pc_pkg_cflags(pkg = "libxml-2.0")
+pc_pkg_libs(pkg = "libxml-2.0")
+pc_pkg_info(pkg = "libxml-2.0")
+
+## try adding 
+Sys.setenv(PKG_CONFIG_PATH = "C:/rtools44/usr/lib/pkgconfig" )
+
+# for terminal: export PKG_CONFIG_PATH="C:/rtools44/usr/lib/pkgconfig"
+make("libxml-2.0.pc")
+
+Sys.getenv()
+
+#################
+install.packages("pkgbuild")
+library(pkgbuild)
+install.packages("pkgconfig")
+library(pkgconfig)
+pkgconfig::get_config("PKG_CXXFLAGS")
+
+######## try some pkgbuild tools
+pkgbuild::check_build_tools()
+compiler_flags(TRUE)
+has_build_tools(debug = TRUE)
+
+
+make_info()
+pc_pkg_list()
+
+###################
+## try PKI example from https://cran.r-project.org/bin/windows/base/howto-R-4.4.html
+install.packages("PKI", type="source")
+
+## trin RcppCWB example
+library(devtools)
+devtools::install_github("PolMine/RcppCWB")

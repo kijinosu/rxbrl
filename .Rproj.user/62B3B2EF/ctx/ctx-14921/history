@@ -1,0 +1,8 @@
+# rxbrl-dev-02.R
+# created 2025-03-19
+# Scripts for developing rxbrl
+#
+# Start experimenting with package towards
+# incorporating functions from original XBRL
+# package.
+library(Rcpp)

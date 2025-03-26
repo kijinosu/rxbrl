@@ -1,0 +1,25 @@
+Package: rxbrl
+Type: Package
+Title: Extraction of Business Financial Information from 'XBRL'
+        Documents
+Version: 0.99.20.9
+Date: 2025-03-26
+Authors@R: c(person("Alan", "Engel", role = c("aut", "cre"), email =
+        "kijinosu@proton.me"),
+        person("Roberto", "Bertolusso", role = c("aut"), email =
+        "rbertolusso@rice.edu")
+        )
+Maintainer: Alan Engel <kijinosu@proton.me>
+Description: Functions to extract business financial information from
+    an Extensible Business Reporting Language (XBRL) instance file and the
+    associated collection of files that defines its Discoverable Taxonomy.
+    Set (DTS).
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.14), xml2
+SystemRequirements: libxml-2.0 (>= 2.9.1)
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2025-03-26 04:17:54 UTC; Alan
+Author: Alan Engel [aut, cre],
+  Roberto Bertolusso [aut]
+

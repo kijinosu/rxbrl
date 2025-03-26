@@ -1,0 +1,20 @@
+# rxbrl-test-01.R
+# created: 2025-03-24
+# Purpose: Test script for running rxbrl on real data
+library(rxbrl)
+library(rlang)
+#
+# 
+
+xmlpath <- "C:/Users/Alan/Dropbox/_RStudioProjects/rxbrlDev01/data/abt-20131231/abt-20131231.xml"
+cache <- "../XBRLcache"
+xbrl <- XBRL()
+xbrl$setVerbose(TRUE)
+xbrl$setCacheDir(cache)
+xbrl$openInstance(xmlpath)
+schemaname <- xbrl$getSchemaName()
+xbrl$processSchema(schemaname)
+
+xbrl$closeInstance()
+xbrl.vars <- xbrl$getResults()
+unlink(cache)

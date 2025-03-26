@@ -1,0 +1,17 @@
+2025-03-28  Alan Engel  <kijinosu@proton.me>
+
+        * Version 0.99.20.9
+        
+        * Modify rxbrlR/fixFileName to accept 'https:' in urls
+
+2025-03-28  Alan Engel  <kijinosu@proton.me>
+
+        * Version 0.99.20.8
+        
+        * port remainder of XBRL's R and cpp files except for xbrlSECcev01.R
+
+2025-03-24  Alan Engel  <kijinosu@proton.me>
+
+        * Version 0.99.20.7
+
+        * First successful compile and link.

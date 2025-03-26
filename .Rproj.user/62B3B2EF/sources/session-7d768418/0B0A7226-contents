@@ -1,0 +1,14 @@
+## Use the R_HOME indirection to support installations of multiple R version
+## This is a revised Makevars.ucrt based on 
+## https://cran.r-project.org/bin/windows/base/howto-R-4.4.html and
+## https://svn.r-project.org/R-dev-web/trunk/WindowsBuilds/winutf8/ucrt3/r_packages/patches/CRAN/XBRL.diff
+
+PKG_LIBS = $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" -e "Rcpp:::LdFlags()")
+
+ifeq (,$(shell pkg-config --version 2>/dev/null))
+    PKG_CXXFLAGS = -I${R_TOOLS_SOFT}/include/libxml2 -DLIBXML_STATIC
+    PKG_LIBS += -lxml2 -liconv -lz -llzma -lws2_32 -lbcrypt
+else
+    PKG_CXXFLAGS = $(shell pkg-config --cflags libxml-2.0)
+    PKG_LIBS += $(shell pkg-config --libs libxml-2.0)
+endif 
