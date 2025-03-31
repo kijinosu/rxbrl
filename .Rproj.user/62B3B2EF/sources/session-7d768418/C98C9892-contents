@@ -1,9 +1,0 @@
-## Use the R_HOME indirection to support installations of multiple R version
-## This is a revised Makevars.ucrt based on 
-## https://cran.r-project.org/bin/windows/base/howto-R-4.4.html and
-## https://svn.r-project.org/R-dev-web/trunk/WindowsBuilds/winutf8/ucrt3/r_packages/patches/CRAN/XBRL.diff
-
-PKG_LIBS = -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib -lxml2 -lz -liconv -lm -lws2_32 -llzma -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib -llzma
-PKG_CXXFLAGS = -IC:/rtools44/x86_64-w64-mingw32.static.posix/include/libxml2 -DLIBXML_STATIC -IC:/rtools44/x86_64-w64-mingw32.static.posix/include -DLZMA_API_STATIC -DLZMA_API_STATIC
-
-
