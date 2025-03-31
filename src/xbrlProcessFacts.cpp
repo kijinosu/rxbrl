@@ -42,12 +42,25 @@ RcppExport SEXP xbrlProcessFacts(SEXP epaDoc) {
   for (int i=0; i < fact_nodeset_ln; i++) {
     xmlNodePtr fact_node = fact_nodeset->nodeTab[i];
     
-    if (fact_node->ns->prefix)
+    xmlChar *tmp_str;
+    if (xmlStrEqual(fact_node->ns->prefix, (xmlChar*) "ix")) {
+      if ((tmp_str = xmlGetProp(fact_node, (xmlChar*) "name"))) {
+        const xmlChar *colon = xmlStrchr((xmlChar*)tmp_str, ':');
+        if(colon) {
+          int offset = (int)(colon - tmp_str);
+          int lenpost = xmlStrlen(tmp_str) - offset - 1;
+          elementId[i] = (char *) xmlStrcat(xmlStrcat(xmlStrsub(tmp_str,0,offset), (xmlChar*) "_"),xmlStrsub(tmp_str,offset+1,lenpost));
+        } else
+          elementId[i] = (char *) tmp_str;
+        xmlFree(tmp_str);
+      } else {
+        elementId[i] = NA_STRING;
+      }
+    } else if (fact_node->ns->prefix)
       elementId[i] = (char *) ((string) (char *) fact_node->ns->prefix + "_" + (string) (char *) fact_node->name).data();
     else
       elementId[i] = (char *) fact_node->name;
     
-    xmlChar *tmp_str;
     if ((tmp_str = xmlGetProp(fact_node, (xmlChar*) "contextRef"))) { 
       contextId[i] = (char *) tmp_str;
       xmlFree(tmp_str);

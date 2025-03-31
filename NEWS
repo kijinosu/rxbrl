@@ -1,8 +1,20 @@
+2025-03-31  Alan Engel  <kijinosu@proton.me>
+
+        * Version 0.99.20.10
+        
+        * Modify rxbrl/R/xbrlProcessFacts to handle inlineXBRL fact elements.
+        In older XBRL, facts are contained in xml elements whose names
+        are a combination of namespace and the elementId, for example,
+        "<dei:DocumentPeriodEndDate>". But in inlineXBRL, the element name
+        is of the form "ix:nonNumeric" where ix is the prefix of the
+        namespace "http://www.xbrl.org/2013/inlineXBRL". The elementId is
+        in an attribute "name".
+
 2025-03-28  Alan Engel  <kijinosu@proton.me>
 
         * Version 0.99.20.9
         
-        * Modify rxbrlR/fixFileName to accept 'https:' in urls
+        * Modify rxbrl/R/fixFileName to accept 'https:' in urls
 
 2025-03-28  Alan Engel  <kijinosu@proton.me>
 

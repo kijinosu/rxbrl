@@ -2,8 +2,8 @@ Package: rxbrl
 Type: Package
 Title: Extraction of Business Financial Information from 'XBRL'
         Documents
-Version: 0.99.20.9
-Date: 2025-03-26
+Version: 0.99.20.10
+Date: 2025-03-31
 Authors@R: c(person("Alan", "Engel", role = c("aut", "cre"), email =
         "kijinosu@proton.me"),
         person("Roberto", "Bertolusso", role = c("aut"), email =
@@ -19,7 +19,7 @@ Imports: Rcpp (>= 1.0.14), xml2
 SystemRequirements: libxml-2.0 (>= 2.9.1)
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2025-03-26 04:17:54 UTC; Alan
+Packaged: 2025-03-31 04:17:54 UTC; Alan
 Author: Alan Engel [aut, cre],
   Roberto Bertolusso [aut]
 
