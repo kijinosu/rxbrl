@@ -29,7 +29,8 @@ XBRL <- function() {
   inst.lnkb <- NULL
 
   fixFileName <- function(dname, file.name) {
-    if ((substr(file.name, 1, 5) != "http:") && (substr(file.name, 1, 6) != "https:")) {
+    if ((substr(file.name, 1, 5) != "http:") && 
+        (substr(file.name, 1, 6) != "https:")) {
       if (substr(file.name, 1, 5) == "../..") { ## A better solution is preferred, but it works for now
         file.name <- paste0(dirname(dirname(dname)), "/",  substr(file.name, 7, nchar(file.name)))
       } else if (substr(file.name, 1, 2) == "..") {
@@ -38,6 +39,7 @@ XBRL <- function() {
         file.name <- paste0(dname,"/", file.name)
       }
     }
+
     file.name
   }
   
@@ -102,7 +104,14 @@ XBRL <- function() {
   }
   
   getSchemaName <- function() {
-    fixFileName(dname.inst, .Call("xbrlGetSchemaName", doc.inst, PACKAGE="rxbrl"))
+    schemafile <- .Call("xbrlGetSchemaName", doc.inst, PACKAGE="rxbrl")
+    filename <- NULL
+    if(is.vector(schemafile)) {
+      filename <- fixFileName(dname.inst, schemafile[1])
+    } else {
+      filename <- fixFileName(dname.inst, schemafile)
+    }
+    return(filename)
   }
   
   processSchema <- function(file, level=1) {

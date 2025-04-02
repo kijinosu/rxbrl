@@ -1,3 +1,10 @@
+2025-04-01  Alan Engel  <kijinosu@proton.me>
+
+        * Version 0.99.20.11
+        
+        * modify getSchemaName to handle return from xbrlGetSchemaName
+        when submission document contains multiple copies of schemaRef link.
+        
 2025-03-31  Alan Engel  <kijinosu@proton.me>
 
         * Version 0.99.20.10
